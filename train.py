@@ -20,6 +20,7 @@ def main():
 
     iris = load_iris()
     X, y = iris.data, iris.target
+    target_names = iris.target_names
 
     X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=3)
 
@@ -33,11 +34,15 @@ def main():
     model_path = os.path.join("artifacts", "model.pkl")
     joblib.dump(model, model_path)
 
-    # Save Accuracy
+    # Save Accuracy and target names
+
     acc = accuracy_score(y_test, y_pred)
     metrics = {"accuracy": float(acc)}
+
+    data = {"target_names": target_names.tolist(), "metrics": metrics}
     with open(os.path.join("artifacts", "metrics.json"), "w") as f:
-        json.dump(metrics, f)
+        json.dump(data, f)
+        
 
     print(f"Saved model to {model_path}")
     print(f"Test accuracy: {acc:.4f}")
