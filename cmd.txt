@@ -1,0 +1,12 @@
+## Remove directry from git 
+git rm -r one-of-the-directories // This deletes from filesystem
+git commit . -m "Remove duplicated directory"
+git push origin <your-git-branch> (typically 'master', but not always)
+
+
+## Python virtual environment
+python -m venv .venv
+.venv\Scripts\Activate.ps1
+
+## FastApi
+uvicorn main:app --reload
